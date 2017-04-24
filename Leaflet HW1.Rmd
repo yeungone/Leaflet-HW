@@ -1,0 +1,39 @@
+---
+title: "HW1 Leaflet"
+author: "M. Yeung"
+date: "April 24, 2017"
+output: html_document
+---
+
+
+## Date: April 24, 2017
+
+
+## Including Maps with some Points of Interest (POI)
+
+```{r CreateMap, echo=FALSE, comment="",warning=FALSE}
+library(leaflet)
+
+FoodIcon <- makeIcon(iconUrl = "food.png",iconWidth = 31*215/230, iconHeight = 31,iconAnchorX = 31*215/230/2, iconAnchorY = 16)
+
+RestuarantLatLong <- data.frame(
+  lat = c(33.6425726, 33.649004, 33.630181),
+  lng = c(-117.7347077, -117.7444436, -117.7211287))
+
+RestuarantSites <- c(
+  "<a href='https://www.yelp.com/biz/han-taiwanese-restaurant-irvine'>Han Restaurant</a>",
+  "<a href='http://locations.thecheesecakefactory.com/ca/irvine-25.html/'>Cheesecake Factory</a>",
+  "<a href='https://www.peppinosonline.com/'>Peppinos Italian Family Restaurant </a>"
+)
+
+RestuarantLatLong %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = FoodIcon, popup = RestuarantSites)
+
+```
+
+```{r showmap, echo=FALSE, comment=""}
+RestuarantLatLong
+```
+
